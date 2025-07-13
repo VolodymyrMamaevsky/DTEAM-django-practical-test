@@ -6,8 +6,8 @@ from playwright.async_api import async_playwright
 
 
 async def render_pdf_from_template(context: dict, template_name: str, output_path: str):
-    html_content = await sync_to_async(render_to_string)(template_name, context)
-
+    context["pdf"] = True
+    html_content = render_to_string(template_name, context)
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
