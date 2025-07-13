@@ -1,14 +1,19 @@
-from django.contrib.auth.models import User
+from typing import ClassVar
+
 from django.db import models
+from django.utils import timezone
 
 
 class RequestLog(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    path = models.CharField(max_length=255)
     method = models.CharField(max_length=10)
-    path = models.CharField(max_length=512)
-    query_string = models.TextField(blank=True)
-    remote_addr = models.GenericIPAddressField(null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    status_code = models.IntegerField(default=200)
+    timestamp = models.DateTimeField(default=timezone.now)
+    user_agent = models.TextField(blank=True, null=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
 
-    def __str__(self):
-        return f"[{self.timestamp}] {self.method} {self.path}"
+    class Meta:
+        ordering: ClassVar[list[str]] = ["-timestamp"]
+
+    def __str__(self) -> str:
+        return f"{self.method} {self.path} ({self.timestamp.strftime('%Y-%m-%d %H:%M:%S')})"

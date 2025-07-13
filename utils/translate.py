@@ -1,16 +1,27 @@
-from openai import OpenAI
+try:
+    from openai import OpenAI
+
+    OPENAI_AVAILABLE = True
+except ImportError:
+    OPENAI_AVAILABLE = False
 
 from CVProject import settings
 
-client = OpenAI(api_key=settings.OPENAI_API_KEY)
-
 
 def translate_text(text: str, target_lang: str) -> str:
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": f"Translate the following text to {target_lang}."},
-            {"role": "user", "content": text},
-        ],
-    )
-    return response.choices[0].message.content.strip()
+    if not OPENAI_AVAILABLE:
+        return f"[OpenAI API not available. Translation to {target_lang} is not possible.]"
+
+    try:
+        client = OpenAI(api_key=settings.OPENAI_API_KEY)
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": f"Translate the following text to {target_lang}."},
+                {"role": "user", "content": text},
+            ],
+        )
+        content = response.choices[0].message.content
+        return content.strip() if content else ""
+    except Exception:
+        return f"[Translation error to {target_lang}]"

@@ -135,3 +135,6 @@ combine-as-imports = true
 
 [format]
 preview = true 
+
+[lint.per-file-ignores]
+"apps/main/serializers.py" = ["PLR6301"] 

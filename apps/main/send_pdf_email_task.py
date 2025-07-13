@@ -7,8 +7,8 @@ from CVProject.celery import app
 from utils.html_to_pdf import generate_pdf
 
 
-@app.task
-def send_cv_pdf_email_task(cv_id, email):
+@app.task  # type: ignore[misc]
+def send_cv_pdf_email_task(cv_id: int, email: str) -> None:
     cv = CV.objects.select_related("contacts").prefetch_related("skills", "projects").get(id=cv_id)
 
     context = {"cv": cv}

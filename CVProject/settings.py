@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-nhup!uzym4p%k2e4rf@z+3h&ox+!8+aa%0h-7(^6+n9_+z!7ed"
+SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,12 +53,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "audit.middleware.RequestLoggingMiddleware",
+    "apps.audit.middleware.RequestLoggingMiddleware",
 ]
 
 ROOT_URLCONF = "CVProject.urls"
 
-TEMPLATE_DIR = os.path.join(BASE_DIR, "apps/templates")
+TEMPLATE_DIR = BASE_DIR / "apps/templates"
 
 TEMPLATES = [
     {
@@ -98,7 +98,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": str(BASE_DIR / "db.sqlite3"),
         }
     }
 
@@ -135,6 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -145,7 +146,7 @@ CELERY_BROKER_URL = "redis://redis:6379/0"
 
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
 EMAIL_HOST = os.getenv("EMAIL_HOST", "localhost")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
+EMAIL_PORT = int(os.getenv("EMAIL_PORT") or "587")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "False") == "True"
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")

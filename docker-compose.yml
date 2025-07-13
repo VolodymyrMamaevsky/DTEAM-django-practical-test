@@ -1,21 +1,24 @@
 services:
-  web:
-    build: .
-    command: >
-      sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/app
-    ports:
-      - "8000:8000"
+  django:
+    container_name: dteam-django-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
     env_file:
       - .env
+    volumes:
+      - .:/opt/pysetup/app
+      - .env:/opt/pysetup/app/.env
+    ports:
+      - "8000:8000"
     depends_on:
-      - db
+      - postgres
+      - redis
 
-  db:
+  postgres:
     image: postgres:17
-    restart: always
+    container_name: dteam-django-db
     env_file:
       - .env
     environment:
@@ -29,22 +32,28 @@ services:
 
   redis:
     image: redis:latest
+    container_name: dteam-django-redis
     ports:
       - "6379:6379"
 
   celery:
-    build: .
+    container_name: dteam-django-celery
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
     command: celery -A CVProject worker --loglevel=info
-    depends_on:
-      - redis
-      - db
     env_file:
       - .env
     volumes:
-      - .:/app
+      - .:/opt/pysetup/app
+    depends_on:
+      - redis
+      - postgres
 
   mailhog:
     image: mailhog/mailhog
+    container_name: dteam-django-mailhog
     ports:
       - "8025:8025"
 

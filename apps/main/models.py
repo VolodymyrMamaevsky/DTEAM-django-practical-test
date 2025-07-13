@@ -5,7 +5,7 @@ from django.db.models import CASCADE
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -14,7 +14,7 @@ class Project(models.Model):
     description = models.TextField()
     link = models.URLField()
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -23,7 +23,7 @@ class Contact(models.Model):
     phone = models.CharField(max_length=50)
     linkedin = models.URLField(blank=True, null=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.email
 
 
@@ -35,5 +35,5 @@ class CV(models.Model):
     projects = models.ManyToManyField(Project, related_name="cvs")
     contacts = models.OneToOneField(Contact, on_delete=CASCADE, related_name="cv")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.firstname} {self.lastname}"
