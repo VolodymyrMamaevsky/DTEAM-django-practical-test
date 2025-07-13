@@ -1,13 +1,16 @@
 import tempfile
 from datetime import datetime
 
+from django.contrib import messages
 from django.http import FileResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.text import slugify
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView
 from rest_framework.viewsets import ModelViewSet
 
 from apps.main.models import CV
+from apps.main.send_pdf_email_task import send_cv_pdf_email_task
 from apps.main.serializers import CVSerializer
 from utils.html_to_pdf import generate_pdf
 
@@ -25,6 +28,15 @@ def export_cv_pdf(request, pk):
         response = FileResponse(open(tmpfile.name, "rb"), content_type="application/pdf")
         response["Content-Disposition"] = f'attachment; filename="{filename}"'
         return response
+
+
+def send_cv_pdf_view(request, pk):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        if email:
+            send_cv_pdf_email_task.delay(pk, email)
+            messages.success(request, "CV PDF was successfully sent to your email")
+    return redirect("main:cv_detail", pk=pk)
 
 
 class CVListView(ListView):
