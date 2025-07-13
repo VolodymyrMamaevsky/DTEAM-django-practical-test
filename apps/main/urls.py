@@ -7,6 +7,7 @@ from apps.main.views import (
     CVViewSet,
     export_cv_pdf,
     send_cv_pdf_view,
+    translate_cv_view,
 )
 
 router = DefaultRouter()
@@ -17,6 +18,7 @@ urlpatterns = [
     path("cv/<int:pk>/", CVDetailView.as_view(), name="cv_detail"),
     path("cv/<int:pk>/pdf/", export_cv_pdf, name="cv_pdf"),
     path("cv/<int:pk>/send/", send_cv_pdf_view, name="send_cv_pdf"),
+    path("cv/<int:pk>/translate/", translate_cv_view, name="translate_cv"),
 ]
 
 urlpatterns += router.urls
