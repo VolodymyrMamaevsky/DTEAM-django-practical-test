@@ -66,9 +66,9 @@
       "model": "main.contact",
       "pk": 1,
       "fields": {
-        "email": "volodymyr@example.com",
+        "email": "volodymyr_mamaevsky@gmail.com",
         "phone": "+380681234567",
-        "linkedin": "https://linkedin.com/in/stepanvolodymyr"
+        "linkedin": "https://www.linkedin.com/in/volodymyr-mamaevsky/"
       }
     },
     {
@@ -77,7 +77,7 @@
       "fields": {
         "email": "olga@example.com",
         "phone": "+380987654321",
-        "linkedin": "https://linkedin.com/in/olga"
+        "linkedin": "https://linkedin.com/in/olga/"
       }
     },
     {
@@ -86,7 +86,7 @@
       "fields": {
         "email": "olena@example.com",
         "phone": "+380951112233",
-        "linkedin": "https://linkedin.com/in/olena"
+        "linkedin": "https://linkedin.com/in/olena/"
       }
     },
     {
@@ -95,7 +95,7 @@
       "fields": {
         "email": "sergiy@example.com",
         "phone": "+380661234567",
-        "linkedin": "https://linkedin.com/in/sergiy"
+        "linkedin": "https://linkedin.com/in/sergiy/"
       }
     },
     {
@@ -120,18 +120,18 @@
       "model": "main.project",
       "pk": 3,
       "fields": {
-        "name": "Ecommerce_University",
-        "description": "MVP project using FastAPI, Alembic & Async SQLAlchemy.",
-        "link": "https://github.com/VolodymyrMamaevsky/Ecommerce_University"
+        "name": "Rest_API_service_Golang",
+        "description": "REST API service Golang",
+        "link": "https://github.com/VolodymyrMamaevsky/Rest_API_service_Go"
       }
     },
     {
       "model": "main.project",
       "pk": 4,
       "fields": {
-        "name": "Rest_API_service_Go",
-        "description": "REST API service Go",
-        "link": "https://github.com/VolodymyrMamaevsky/Rest_API_service_Go"
+        "name": "Ecommerce_University",
+        "description": "MVP project using FastAPI, Alembic & Async SQLAlchemy",
+        "link": "https://github.com/VolodymyrMamaevsky/Ecommerce_University"
       }
     },
     {

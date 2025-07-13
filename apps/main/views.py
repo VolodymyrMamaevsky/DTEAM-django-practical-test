@@ -1,9 +1,8 @@
 from typing import Any
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.text import slugify
 from django.utils.timezone import now
 from django.views.generic import DetailView, ListView
@@ -53,23 +52,28 @@ class CVDetailPDFView(WeasyTemplateResponseMixin, DetailView):
         return CV.objects.select_related("contacts").prefetch_related("skills", "projects")
 
 
-@login_required
 def translate_cv_view(request: HttpRequest, pk: int) -> HttpResponse:
     cv = get_object_or_404(CV, pk=pk)
 
     if request.method == "POST":
-        target_language = request.POST.get("target_language")
+        target_language = request.POST.get("language")
         if target_language not in TRANSLATION_LANGUAGES:
             return HttpResponse("Invalid language", status=400)
 
         try:
             cv_data = serialize_cv_for_translation(cv)
             translated_data = translate_text(cv_data, target_language)
-            return HttpResponse(translated_data, content_type="application/json")
+            context = {
+                "cv": cv,
+                "translated_cv": translated_data,
+                "languages": TRANSLATION_LANGUAGES,
+            }
+            return render(request, "main/cv_detail.html", context)
         except Exception as e:
-            return HttpResponse(f"Translation failed: {e!s}", status=500)
+            messages.error(request, f"Translation failed: {e!s}")
+            return redirect("main:cv_detail", pk=pk)
 
-    return HttpResponse("Method not allowed", status=405)
+    return redirect("main:cv_detail", pk=pk)
 
 
 class CVListView(ListView):

@@ -121,7 +121,9 @@ ignore = [
     # Use of `assert` detected
     "S101",
     # Magic value used in comparison
-    "PLR2004"
+    "PLR2004",
+    # The file is executable but no shebang is present
+    "EXE002",
 ]
 
 [lint.flake8-builtins]
