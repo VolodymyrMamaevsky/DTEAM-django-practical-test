@@ -1,0 +1,35 @@
+{% extends "main/base.html" %}
+
+{% block title %}CV List{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Available CVs</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for cv in cv_list %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cv.firstname }} {{ cv.lastname }}</h5>
+                        <p class="card-text">{{ cv.bio|truncatewords:25 }}</p>
+                        <p><strong>Skills:</strong>
+                            {% for skill in cv.skills.all %}
+                                <span class="badge bg-secondary">{{ skill.name }}</span>
+                            {% endfor %}
+                        </p>
+                        <p><strong>Projects:</strong>
+                            <ul>
+                                {% for project in cv.projects.all %}
+                                    <li><a href="{{ project.link }}">{{ project.name }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                        <p><strong>Contact:</strong> {{ cv.contacts.email }} | {{ cv.contacts.phone }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No CVs available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
