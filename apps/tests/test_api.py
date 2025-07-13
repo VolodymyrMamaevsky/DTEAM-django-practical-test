@@ -1,6 +1,7 @@
 import pytest
-from main.models import CV, Contact, Project, Skill
 from rest_framework.test import APIClient
+
+from apps.main.models import CV, Contact, Project, Skill
 
 
 @pytest.mark.django_db

@@ -1,13 +1,11 @@
 from django.utils.deprecation import MiddlewareMixin
-from audit.models import RequestLog
+
+from apps.audit.models import RequestLog
 
 
 class RequestLoggingMiddleware(MiddlewareMixin):
     def process_request(self, request):
-        if (
-                request.path.startswith("/static/")
-                or request.path.startswith("/admin/")
-        ):
+        if request.path.startswith("/static/") or request.path.startswith("/admin/"):
             return
 
         RequestLog.objects.create(
@@ -15,7 +13,7 @@ class RequestLoggingMiddleware(MiddlewareMixin):
             path=request.path,
             query_string=request.META.get("QUERY_STRING", ""),
             remote_addr=self.get_client_ip(request),
-            user=request.user if request.user.is_authenticated else None
+            user=request.user if request.user.is_authenticated else None,
         )
 
     def get_client_ip(self, request):
