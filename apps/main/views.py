@@ -7,8 +7,8 @@ from django.utils.text import slugify
 from django.views.generic import DetailView, ListView
 from rest_framework.viewsets import ModelViewSet
 
-from main.models import CV
-from main.serializers import CVSerializer
+from apps.main.models import CV
+from apps.main.serializers import CVSerializer
 from utils.html_to_pdf import generate_pdf
 
 

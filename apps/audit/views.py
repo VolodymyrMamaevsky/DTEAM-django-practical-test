@@ -1,5 +1,6 @@
-from audit.models import RequestLog
 from django.shortcuts import render
+
+from apps.audit.models import RequestLog
 
 
 def recent_logs_view(request):

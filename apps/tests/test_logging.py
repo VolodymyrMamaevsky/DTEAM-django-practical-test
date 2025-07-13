@@ -1,6 +1,7 @@
 import pytest
-from audit.models import RequestLog
 from django.test import override_settings
+
+from apps.audit.models import RequestLog
 
 
 @pytest.mark.django_db
