@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from main.models import CV
 
@@ -8,3 +8,9 @@ class CVListView(ListView):
     template_name = "main/cv_list.html"
     context_object_name = "cv_list"
     queryset = CV.objects.select_related("contacts").prefetch_related("skills", "projects")
+
+
+class CVDetailView(DetailView):
+    model = CV
+    template_name = "main/cv_detail.html"
+    context_object_name = "cv"
