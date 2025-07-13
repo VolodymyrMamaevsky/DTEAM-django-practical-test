@@ -3,8 +3,10 @@
 {% block title %}CV - {{ cv.firstname }} {{ cv.lastname }}{% endblock %}
 
 {% block content %}
-
 <h2>{{ cv.firstname }} {{ cv.lastname }}</h2>
+{% if translated_cv %}
+<pre class="bg-light p-3 rounded">{{ translated_cv }}</pre>
+{% else %}
 <p><strong>Bio:</strong> {{ cv.bio }}</p>
 
 <p><strong>Skills:</strong>
@@ -29,23 +31,35 @@
   LinkedIn: <a href="{{ cv.contacts.linkedin }}">{{ cv.contacts.linkedin }}</a>
   {% endif %}
 </p>
+{% endif %}
 
 {% if not pdf %}
-  <a href="{% url 'main:cv_list' %}" class="btn btn-outline-secondary mt-3">← Back to CV List</a>
-  <a href="{% url 'main:cv_pdf' cv.id %}" class="btn btn-outline-primary mt-3">Download PDF</a>
 
-  {% if messages %}
-  <ul class="alert alert-info">
-    {% for message in messages %}
-    <li>{{ message }}</li>
+<a href="{% url 'main:cv_list' %}" class="btn btn-outline-secondary mt-3">← Back to CV List</a>
+<a href="{% url 'main:cv_pdf' cv.id %}" class="btn btn-outline-primary mt-3">Download PDF</a>
+
+{% if messages %}
+<ul class="alert alert-info">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<form action="{% url 'main:send_cv_pdf' cv.id %}" method="post">
+  {% csrf_token %}
+  <input type="email" name="email" placeholder="Enter email" required>
+  <button type="submit" class="btn btn-success mt-2">Send PDF to Email</button>
+</form>
+
+<form method="post" action="{% url 'main:translate_cv' cv.id %}">
+  {% csrf_token %}
+  <select name="language" required class="form-select mb-2">
+    {% for lang in languages %}
+    <option value="{{ lang }}">{{ lang }}</option>
     {% endfor %}
-  </ul>
-  {% endif %}
-
-  <form action="{% url 'main:send_cv_pdf' cv.id %}" method="post">
-    {% csrf_token %}
-    <input type="email" name="email" placeholder="Enter email" required>
-    <button type="submit" class="btn btn-success mt-2">Send PDF to Email</button>
-  </form>
+  </select>
+  <button type="submit" class="btn btn-info">Translate</button>
+</form>
 {% endif %}
 {% endblock %}

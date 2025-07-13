@@ -1,6 +1,5 @@
 import asyncio
 
-from asgiref.sync import sync_to_async
 from django.template.loader import render_to_string
 from playwright.async_api import async_playwright
 

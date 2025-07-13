@@ -117,7 +117,11 @@ ignore = [
     # Too-many-nested-blocks
     "PLR1702",
     # Builtin-module-shadowing
-    "A005"
+    "A005",
+    # Use of `assert` detected
+    "S101",
+    # Magic value used in comparison
+    "PLR2004"
 ]
 
 [lint.flake8-builtins]

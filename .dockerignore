@@ -1,0 +1,46 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+
+# Virtual envs
+.venv/
+env/
+venv/
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+
+# OS / Finder
+.DS_Store
+
+# SQLite DB
+db.sqlite3
+
+# Test artifacts / logs
+*.log
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Environment files
+.env
+.env.*
+
+# Node-related
+node_modules/
+dist/
+build/
+
+# Git
+.git/
+.gitignore
+
+# Docker / Cache
+.dockerignore
+docker-compose.override.yml
