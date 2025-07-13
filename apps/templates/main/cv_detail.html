@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+
+{% block title %}CV - {{ cv.firstname }} {{ cv.lastname }}{% endblock %}
+
+{% block content %}
+    <h2>{{ cv.firstname }} {{ cv.lastname }}</h2>
+    <p><strong>Bio:</strong> {{ cv.bio }}</p>
+
+    <p><strong>Skills:</strong>
+        {% for skill in cv.skills.all %}
+            <span class="badge bg-secondary">{{ skill.name }}</span>
+        {% endfor %}
+    </p>
+
+    <p><strong>Projects:</strong></p>
+    <ul>
+        {% for project in cv.projects.all %}
+            <li>
+                <a href="{{ project.link }}">{{ project.name }}</a> — {{ project.description }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p><strong>Contact:</strong><br>
+        Email: {{ cv.contacts.email }}<br>
+        Phone: {{ cv.contacts.phone }}<br>
+        {% if cv.contacts.linkedin %}
+            LinkedIn: <a href="{{ cv.contacts.linkedin }}">{{ cv.contacts.linkedin }}</a>
+        {% endif %}
+    </p>
+
+    <a href="{% url 'main:cv_list' %}" class="btn btn-outline-secondary mt-3">← Back to CV List</a>
+{% endblock %}

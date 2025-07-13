@@ -1,0 +1,235 @@
+[
+    {
+      "model": "main.skill",
+      "pk": 1,
+      "fields": {
+        "name": "Python"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 2,
+      "fields": {
+        "name": "Django"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 3,
+      "fields": {
+        "name": "FastAPI"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 4,
+      "fields": {
+        "name": "PostgreSQL"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 5,
+      "fields": {
+        "name": "Golang"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 6,
+      "fields": {
+        "name": "React"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 7,
+      "fields": {
+        "name": "JavaScript"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 8,
+      "fields": {
+        "name": "MongoDB"
+      }
+    },
+    {
+      "model": "main.skill",
+      "pk": 9,
+      "fields": {
+        "name": "Docker"
+      }
+    },
+    {
+      "model": "main.contact",
+      "pk": 1,
+      "fields": {
+        "email": "volodymyr@example.com",
+        "phone": "+380681234567",
+        "linkedin": "https://linkedin.com/in/stepanvolodymyr"
+      }
+    },
+    {
+      "model": "main.contact",
+      "pk": 2,
+      "fields": {
+        "email": "olga@example.com",
+        "phone": "+380987654321",
+        "linkedin": "https://linkedin.com/in/olga"
+      }
+    },
+    {
+      "model": "main.contact",
+      "pk": 3,
+      "fields": {
+        "email": "sergiy@example.com",
+        "phone": "+380951112233",
+        "linkedin": "https://linkedin.com/in/sergiy"
+      }
+    },
+    {
+      "model": "main.contact",
+      "pk": 4,
+      "fields": {
+        "email": "iryna@example.com",
+        "phone": "+380661234567",
+        "linkedin": "https://linkedin.com/in/iryna"
+      }
+    },
+    {
+      "model": "main.project",
+      "pk": 1,
+      "fields": {
+        "name": "ExpressLRS",
+        "description": "Wonderful open-source project.",
+        "link": "https://github.com/VolodymyrMamaevsky/ExpressLRS"
+      }
+    },
+    {
+      "model": "main.project",
+      "pk": 2,
+      "fields": {
+        "name": "Betaflight",
+        "description": "Wonderful open-source project.",
+        "link": "https://github.com/VolodymyrMamaevsky/Betaflight"
+      }
+    },
+    {
+      "model": "main.project",
+      "pk": 3,
+      "fields": {
+        "name": "Ecommerce_University",
+        "description": "MVP project using FastAPI, Alembic & Async SQLAlchemy.",
+        "link": "https://github.com/VolodymyrMamaevsky/Ecommerce_University"
+      }
+    },
+    {
+      "model": "main.project",
+      "pk": 4,
+      "fields": {
+        "name": "Rest_API_service_Go",
+        "description": "REST API service Go",
+        "link": "https://github.com/VolodymyrMamaevsky/Rest_API_service_Go"
+      }
+    },
+    {
+      "model": "main.project",
+      "pk": 5,
+      "fields": {
+        "name": "Pizza",
+        "description": "Online pizza store.",
+        "link": "https://github.com/VolodymyrMamaevsky/Pizza"
+      }
+    },
+    {
+      "model": "main.cv",
+      "pk": 1,
+      "fields": {
+        "firstname": "Volodymyr",
+        "lastname": "Mamaevsky",
+        "bio": "Python Developer",
+        "contacts": 1,
+        "skills": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "projects": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "model": "main.cv",
+      "pk": 2,
+      "fields": {
+        "firstname": "Olga",
+        "lastname": "Kovalenko",
+        "bio": "Frontend developer with a passion for clean UI.",
+        "contacts": 2,
+        "skills": [
+          6,
+          7
+        ],
+        "projects": [
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "model": "main.cv",
+      "pk": 3,
+      "fields": {
+        "firstname": "Olena",
+        "lastname": "Melnyk",
+        "bio": "Full-stack developer with DevOps interest.",
+        "contacts": 3,
+        "skills": [
+          1,
+          2,
+          3,
+          4,
+          6,
+          9
+        ],
+        "projects": [
+          1,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "model": "main.cv",
+      "pk": 4,
+      "fields": {
+        "firstname": "Sergiy",
+        "lastname": "Yakovenko",
+        "bio": "Backend developer focused on RESTful APIs and scalable services.",
+        "contacts": 4,
+        "skills": [
+          1,
+          2,
+          3,
+          4,
+          8,
+          9
+        ],
+        "projects": [
+          1,
+          5
+        ]
+      }
+    }
+  ]
