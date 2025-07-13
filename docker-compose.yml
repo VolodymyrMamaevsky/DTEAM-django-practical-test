@@ -18,7 +18,7 @@ services:
 
   postgres:
     image: postgres:17
-    container_name: dteam-django-db
+    container_name: dteam-db
     env_file:
       - .env
     environment:
@@ -32,17 +32,17 @@ services:
 
   redis:
     image: redis:latest
-    container_name: dteam-django-redis
+    container_name: dteam-redis
     ports:
       - "6379:6379"
 
   celery:
-    container_name: dteam-django-celery
+    container_name: dteam-celery
     build:
       context: .
       dockerfile: Dockerfile
       target: runtime
-    command: celery -A CVProject worker --loglevel=info
+    entrypoint: ["./celery-entrypoint.sh"]
     env_file:
       - .env
     volumes:
@@ -50,10 +50,11 @@ services:
     depends_on:
       - redis
       - postgres
+      - django
 
   mailhog:
     image: mailhog/mailhog
-    container_name: dteam-django-mailhog
+    container_name: dteam-mailhog
     ports:
       - "8025:8025"
 
