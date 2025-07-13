@@ -3,7 +3,7 @@ from django.db.models import CASCADE
 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
@@ -19,7 +19,7 @@ class Project(models.Model):
 
 
 class Contact(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=50)
     linkedin = models.URLField(blank=True, null=True)
 
