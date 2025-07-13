@@ -1,12 +1,13 @@
 import asyncio
 
+from asgiref.sync import sync_to_async
 from django.template.loader import render_to_string
 from playwright.async_api import async_playwright
 
 
 async def render_pdf_from_template(context: dict, template_name: str, output_path: str):
     context["pdf"] = True
-    html_content = render_to_string(template_name, context)
+    html_content = await sync_to_async(render_to_string)(template_name, context)
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
