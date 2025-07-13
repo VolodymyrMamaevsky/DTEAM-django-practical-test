@@ -3,31 +3,49 @@
 {% block title %}CV - {{ cv.firstname }} {{ cv.lastname }}{% endblock %}
 
 {% block content %}
-    <h2>{{ cv.firstname }} {{ cv.lastname }}</h2>
-    <p><strong>Bio:</strong> {{ cv.bio }}</p>
 
-    <p><strong>Skills:</strong>
-        {% for skill in cv.skills.all %}
-            <span class="badge bg-secondary">{{ skill.name }}</span>
-        {% endfor %}
-    </p>
+<h2>{{ cv.firstname }} {{ cv.lastname }}</h2>
+<p><strong>Bio:</strong> {{ cv.bio }}</p>
 
-    <p><strong>Projects:</strong></p>
-    <ul>
-        {% for project in cv.projects.all %}
-            <li>
-                <a href="{{ project.link }}">{{ project.name }}</a> — {{ project.description }}
-            </li>
-        {% endfor %}
-    </ul>
+<p><strong>Skills:</strong>
+  {% for skill in cv.skills.all %}
+  <span class="badge bg-secondary">{{ skill.name }}</span>
+  {% endfor %}
+</p>
 
-    <p><strong>Contact:</strong><br>
-        Email: {{ cv.contacts.email }}<br>
-        Phone: {{ cv.contacts.phone }}<br>
-        {% if cv.contacts.linkedin %}
-            LinkedIn: <a href="{{ cv.contacts.linkedin }}">{{ cv.contacts.linkedin }}</a>
-        {% endif %}
-    </p>
+<p><strong>Projects:</strong></p>
+<ul>
+  {% for project in cv.projects.all %}
+  <li>
+    <a href="{{ project.link }}">{{ project.name }}</a> — {{ project.description }}
+  </li>
+  {% endfor %}
+</ul>
 
-    <a href="{% url 'main:cv_list' %}" class="btn btn-outline-secondary mt-3">← Back to CV List</a>
+<p><strong>Contact:</strong><br>
+  Email: {{ cv.contacts.email }}<br>
+  Phone: {{ cv.contacts.phone }}<br>
+  {% if cv.contacts.linkedin %}
+  LinkedIn: <a href="{{ cv.contacts.linkedin }}">{{ cv.contacts.linkedin }}</a>
+  {% endif %}
+</p>
+
+{% if not pdf %}
+  <a href="{% url 'main:cv_list' %}" class="btn btn-outline-secondary mt-3">← Back to CV List</a>
+  <a href="{% url 'main:cv_pdf' cv.id %}" class="btn btn-outline-primary mt-3">Download PDF</a>
+
+  {% if messages %}
+  <ul class="alert alert-info">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <form action="{% url 'main:send_cv_pdf' cv.id %}" method="post">
+    {% csrf_token %}
+    <input type="email" name="email" placeholder="Enter email" required>
+    <button type="submit" class="btn btn-success mt-2">Send PDF to Email</button>
+  </form>
+{% endif %}
 {% endblock %}
