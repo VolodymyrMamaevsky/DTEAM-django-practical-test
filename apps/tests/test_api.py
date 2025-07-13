@@ -34,11 +34,10 @@ class TestCVAPI:
             firstname="John",
             lastname="Doe",
             bio="Developer",
+            contacts=self.contact,
         )
         self.cv.skills.add(self.skill1)
         self.cv.projects.add(self.project1)
-        self.cv.contacts = self.contact
-        self.cv.save()
         self.client = APIClient()
 
     def test_get_cv_list(self) -> None:
@@ -79,15 +78,15 @@ class TestCVAPI:
     def test_update_cv(self) -> None:
         data = {
             "firstname": "John",
-            "lastname": "Smith",  # Changed
-            "bio": "Senior Developer",  # Changed
-            "skills": [{"name": "Python"}, {"name": "FastAPI"}],  # Changed Django to FastAPI
+            "lastname": "Smith",
+            "bio": "Senior Developer",
+            "skills": [{"name": "JavaScript"}, {"name": "FastAPI"}],
             "projects": [
                 {
                     "name": "Project1",
                     "description": "Updated description",
                     "link": "https://example1.com",
-                }  # Changed description
+                }
             ],
             "contacts": {
                 "email": "john.smith@example.com",
@@ -101,7 +100,9 @@ class TestCVAPI:
         assert self.cv.lastname == "Smith"
         assert self.cv.bio == "Senior Developer"
         assert self.cv.skills.filter(name="FastAPI").exists()
+        assert self.cv.skills.filter(name="JavaScript").exists()
         assert not self.cv.skills.filter(name="Django").exists()
+        assert not self.cv.skills.filter(name="Python").exists()
         project = self.cv.projects.first()
         assert project is not None
         assert project.description == "Updated description"

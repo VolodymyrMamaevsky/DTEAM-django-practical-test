@@ -22,22 +22,19 @@ def test_logs_post_request(client: Client) -> None:
     assert log is not None
     assert log.method == "POST"
     assert log.path == "/api/cv/"
-    assert log.status_code == 400  # Bad request due to empty data
+    assert log.status_code == 400
 
 
 @pytest.mark.django_db
 def test_recent_logs_view(client: Client) -> None:
-    # Create some logs
     client.get(reverse("main:cv_list"))
     client.get("/api/cv/")
     client.post("/api/cv/", data={}, content_type="application/json")
 
-    # Check logs view
     response = client.get(reverse("audit:recent_logs"))
     assert response.status_code == 200
-    assert b"Recent Logs" in response.content
+    assert b"Recent Requests" in response.content
 
-    # Check we have logs in the context
     logs = response.context["logs"]
     assert len(logs) > 0
     assert isinstance(logs[0], RequestLog)

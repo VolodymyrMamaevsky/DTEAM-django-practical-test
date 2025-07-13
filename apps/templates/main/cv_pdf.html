@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ cv.firstname }} {{ cv.lastname }} - CV</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+            @top-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            margin-bottom: 2em;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        .contacts {
+            margin-bottom: 1em;
+        }
+        .section {
+            margin-bottom: 2em;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1em;
+        }
+        .skill {
+            padding: 0.5em;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .project {
+            margin-bottom: 1.5em;
+        }
+        .project-title {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+        .project-description {
+            margin-bottom: 0.5em;
+        }
+        .project-link {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">{{ cv.firstname }} {{ cv.lastname }}</div>
+        <div class="contacts">
+            <div>Email: {{ cv.contacts.email }}</div>
+            <div>Phone: {{ cv.contacts.phone }}</div>
+            {% if cv.contacts.linkedin %}
+            <div>LinkedIn: {{ cv.contacts.linkedin }}</div>
+            {% endif %}
+            {% if cv.contacts.github %}
+            <div>GitHub: {{ cv.contacts.github }}</div>
+            {% endif %}
+        </div>
+        <div class="bio">{{ cv.bio }}</div>
+    </div>
+
+    {% if cv.skills.all %}
+    <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+            {% for skill in cv.skills.all %}
+                <div class="skill">{{ skill.name }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if cv.projects.all %}
+    <div class="section">
+        <div class="section-title">Projects</div>
+        {% for project in cv.projects.all %}
+            <div class="project">
+                <div class="project-title">{{ project.name }}</div>
+                <div class="project-description">{{ project.description }}</div>
+                {% if project.link %}
+                    <div class="project-link">{{ project.link }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html> 

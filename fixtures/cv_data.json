@@ -84,18 +84,18 @@
       "model": "main.contact",
       "pk": 3,
       "fields": {
-        "email": "sergiy@example.com",
+        "email": "olena@example.com",
         "phone": "+380951112233",
-        "linkedin": "https://linkedin.com/in/sergiy"
+        "linkedin": "https://linkedin.com/in/olena"
       }
     },
     {
       "model": "main.contact",
       "pk": 4,
       "fields": {
-        "email": "iryna@example.com",
+        "email": "sergiy@example.com",
         "phone": "+380661234567",
-        "linkedin": "https://linkedin.com/in/iryna"
+        "linkedin": "https://linkedin.com/in/sergiy"
       }
     },
     {

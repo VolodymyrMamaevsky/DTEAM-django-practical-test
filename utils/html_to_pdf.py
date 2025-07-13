@@ -6,5 +6,7 @@ from weasyprint import HTML
 
 def generate_pdf(template_name: str, context: dict[str, Any], output_path: str) -> None:
     context["pdf"] = True
+
     html_content = render_to_string(template_name, context)
-    HTML(string=html_content).write_pdf(output_path)
+
+    HTML(string=html_content).write_pdf(target=output_path)

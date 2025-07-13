@@ -51,9 +51,5 @@ WORKDIR ${PYSETUP_PATH}/app
 # Make entrypoint script executable
 RUN chmod +x entrypoint.sh
 
-# Install WeasyPrint
-USER root
-RUN pip install weasyprint
-USER ${NONROOT_USER}
 
 ENTRYPOINT ["/opt/pysetup/app/entrypoint.sh"]

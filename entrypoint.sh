@@ -34,6 +34,7 @@ else
 fi
 
 echo "Collecting static files... "
+rm -rf staticfiles
 python manage.py collectstatic --noinput
 
 echo "Starting project... "

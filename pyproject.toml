@@ -15,9 +15,11 @@ dependencies = [
     "psycopg2-binary (>=2.9.10,<3.0.0)",
     "pytest (>=8.4.1,<9.0.0)",
     "python-dotenv (>=1.1.1,<2.0.0)",
-    "weasyprint (>=60.1,<61.0.0)",
     "openai (>=1.95.1,<2.0.0)",
-    "gunicorn (>=22.0.0,<23.0.0)"
+    "gunicorn (>=22.0.0,<23.0.0)",
+    "django-weasyprint (>=2.4.0,<3.0.0)",
+    "weasyprint (>=62.0,<63.0.0)",
+    "pydyf (>=0.10.0,<0.11.0)"
 ]
 
 
