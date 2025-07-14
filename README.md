@@ -52,7 +52,8 @@ docker compose exec django pytest -v
 ### Code Quality
 
 #### Linting and formatting (Ruff)
-The project complies with PEP8 standards. Ruff is used as linter and formatter.
+The project complies with PEP8 standards. 
+Ruff is used as linter and formatter.
 
 Run checks:
 ```bash
