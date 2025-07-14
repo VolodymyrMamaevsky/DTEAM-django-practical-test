@@ -1,4 +1,4 @@
-### The original description of the [test task](https://gist.github.com/VolodymyrMamaevsky/c27c38d3566e7dd37729aacb09815aa)
+### The original description of the [test task](https://gist.github.com/VolodymyrMamaevsky/c27c38d3566e7dd37729aacb09815aa3)
 
 # CV Project
 
@@ -6,36 +6,30 @@ Django application for managing CVs with PDF export, email sending, and translat
 
 ## Features
 
-- **Full Docker automation** - everything is configured and ready to run
+- **Full Docker automation** - migrations and fixtures will be applied automatically, you don't need to worry about that
 - CV export to PDF format
 - Email CV sending via Celery
 - CV translation to different languages using OpenAI API
 - Request audit system
 - Test coverage according to technical requirements
-- PEP8 compliance
-- Full code typing
+- PEP8 compliance, check using Ruff
+- Full code typing, check using MyPy
 
 ## Quick Start
 
 ### 1. Clone the project
 ```bash
-git clone <repository-url>
-cd DTEAM-django-practical-test
+git clone https://github.com/VolodymyrMamaevsky/DTEAM-django-practical-test.git
 ```
 
 ### 2. Environment setup
-Create a `.env` file in the project root based on `.env.example`:
-```bash
-cp .env.example .env
-```
-
-Edit the `.env` file, filling in the necessary values (especially `SECRET_KEY` and `OPENAI_API_KEY`).
+Create a `.env` file in the project root based on `.env.example`
+Here you can conveniently take the actual [.env file](https://gist.github.com/VolodymyrMamaevsky/9f7614d4534106f13e2f1ac21ac940f5)
 
 ### 3. Run the project
 ```bash
 docker compose up -d
 ```
-
 All necessary operations (migrations, dependency installation, database setup) are performed automatically when starting containers.
 
 ### 4. Access the application
@@ -93,18 +87,6 @@ The project consists of the following services:
 - CV translation to various languages
 - Audit system for all HTTP requests
 - Application settings
-
-## Development
-
-To connect to the Django container for development:
-```bash
-docker compose exec django bash
-```
-
-View logs for all services:
-```bash
-docker compose logs -f
-```
 
 ## Commit Guidelines
 
