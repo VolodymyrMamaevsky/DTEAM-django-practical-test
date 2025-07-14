@@ -1,5 +1,6 @@
 #### The original description of the [test task](https://gist.github.com/VolodymyrMamaevsky/c27c38d3566e7dd37729aacb09815aa3)
 #### Here is the link where you can view the [project online](https://goshawk-massive-lightly.ngrok-free.app/)
+#### Test results: [Pytest, MyPy, Ruff](https://ibb.co/wFbyMpTD)
 
 ## CV Project
 
