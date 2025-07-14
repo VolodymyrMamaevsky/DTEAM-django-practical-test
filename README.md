@@ -6,7 +6,7 @@
 ### Django application for managing CVs with PDF export, email sending, and translation to different languages.
 
 
-### Technology Stack: Django, DRF, PostgreSQL, Celery, Redis, Pytest, MyPy, Ruff.
+### *Technology Stack: Django, DRF, PostgreSQL, Celery, Redis, Pytest, MyPy, Ruff.*
 
 ### Features
 
