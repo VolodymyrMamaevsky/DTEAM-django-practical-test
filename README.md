@@ -1,3 +1,5 @@
+### The original description of the [test task](https://gist.github.com/VolodymyrMamaevsky/c27c38d3566e7dd37729aacb09815aa)
+
 # CV Project
 
 Django application for managing CVs with PDF export, email sending, and translation to different languages.
