@@ -61,7 +61,8 @@ docker compose exec django ruff check .
 ```
 
 #### Type checking (MyPy)
-The project is fully typed. Checking may take some time.
+The project is fully typed. 
+Checking may take some time.
 
 Run type checking:
 ```bash
