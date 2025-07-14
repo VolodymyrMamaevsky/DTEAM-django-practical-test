@@ -67,7 +67,7 @@
       "pk": 1,
       "fields": {
         "email": "volodymyr_mamaevsky@gmail.com",
-        "phone": "+380681234567",
+        "phone": "+380956075128",
         "linkedin": "https://www.linkedin.com/in/volodymyr-mamaevsky/"
       }
     },
@@ -102,15 +102,6 @@
       "model": "main.project",
       "pk": 1,
       "fields": {
-        "name": "ExpressLRS",
-        "description": "Wonderful open-source project.",
-        "link": "https://github.com/VolodymyrMamaevsky/ExpressLRS"
-      }
-    },
-    {
-      "model": "main.project",
-      "pk": 2,
-      "fields": {
         "name": "Betaflight",
         "description": "Wonderful open-source project.",
         "link": "https://github.com/VolodymyrMamaevsky/Betaflight"
@@ -118,11 +109,20 @@
     },
     {
       "model": "main.project",
+      "pk": 2,
+      "fields": {
+        "name": "Furniture_Store",
+        "description": "Online furniture store.",
+        "link": "https://github.com/VolodymyrMamaevsky/Furniture_Store"
+      }
+    },
+    {
+      "model": "main.project",
       "pk": 3,
       "fields": {
-        "name": "Rest_API_service_Golang",
-        "description": "REST API service Golang",
-        "link": "https://github.com/VolodymyrMamaevsky/Rest_API_service_Go"
+        "name": "Pizza",
+        "description": "Online pizza store.",
+        "link": "https://github.com/VolodymyrMamaevsky/Pizza"
       }
     },
     {
@@ -138,9 +138,9 @@
       "model": "main.project",
       "pk": 5,
       "fields": {
-        "name": "Pizza",
-        "description": "Online pizza store.",
-        "link": "https://github.com/VolodymyrMamaevsky/Pizza"
+        "name": "REST API service Golang",
+        "description": "REST API service Golang",
+        "link": "https://github.com/VolodymyrMamaevsky/Rest_API_service_Go"
       }
     },
     {
@@ -149,11 +149,11 @@
       "fields": {
         "firstname": "Volodymyr",
         "lastname": "Mamaevsky",
-        "bio": "Python Developer",
+        "bio": "2+ years of commercial experience as a Python developer. Strong knowledge of Python (FastAPI, Django), PostgreSQL, Docker. I also have experience with JavaScript (React) and Golang.",
         "contacts": 1,
         "skills": [
-          1,
           2,
+          1,
           3,
           4,
           5,
@@ -165,7 +165,9 @@
         "projects": [
           1,
           2,
-          3
+          3,
+          4,
+          5
         ]
       }
     },

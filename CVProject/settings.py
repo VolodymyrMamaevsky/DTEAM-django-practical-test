@@ -28,7 +28,14 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,testserver").split(",")
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS", "localhost,127.0.0.1,testserver,goshawk-massive-lightly.ngrok-free.app"
+).split(",")
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://goshawk-massive-lightly.ngrok-free.app",
+    "http://goshawk-massive-lightly.ngrok-free.app",
+]
 
 # Application definition
 

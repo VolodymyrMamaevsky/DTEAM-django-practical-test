@@ -46,10 +46,10 @@
 </ul>
 {% endif %}
 
-<form action="{% url 'main:send_cv_pdf' cv.id %}" method="post">
+<form action="{% url 'main:send_cv_pdf' cv.id %}" method="post" class="d-flex gap-2 mt-3">
   {% csrf_token %}
-  <input type="email" name="email" placeholder="Enter email" required>
-  <button type="submit" class="btn btn-success mt-2">Send PDF to Email</button>
+  <input type="email" name="email" placeholder="Enter email" class="form-control" style="max-width: 300px;" required>
+  <button type="submit" class="btn btn-success">Send PDF to Email</button>
 </form>
 
 <form method="post" action="{% url 'main:translate_cv' cv.id %}">

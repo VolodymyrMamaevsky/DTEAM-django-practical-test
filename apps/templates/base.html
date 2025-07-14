@@ -8,9 +8,37 @@
 <body>
     <header class="bg-dark text-white p-3">
         <div class="container">
-            <h1 class="mb-0">DTEAM</h1>
+            <h1 class="mb-0">
+                <a href="{% url 'main:cv_list' %}" class="text-white text-decoration-none">DTEAM</a>
+            </h1>
         </div>
     </header>
+
+    <nav class="bg-light border-bottom">
+        <div class="container">
+            <div class="d-flex justify-content-center py-3">
+                <div class="btn-group" role="group">
+                    <a href="{% url 'main:cv_list' %}" class="btn btn-outline-primary nav-btn {% if request.resolver_match.namespace == 'main' %}active{% endif %}">
+                        CV
+                    </a>
+                    <a href="{% url 'audit:recent_logs' %}" class="btn btn-outline-primary nav-btn {% if request.resolver_match.namespace == 'audit' %}active{% endif %}">
+                        Logs
+                    </a>
+                    <a href="{% url 'settingsinfo:settings' %}" class="btn btn-outline-primary nav-btn {% if request.resolver_match.namespace == 'settingsinfo' %}active{% endif %}">
+                        Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+        .nav-btn:hover:not(.active) {
+            background-color: #f8f9fa !important;
+            border-color: #6c757d !important;
+            color: #6c757d !important;
+        }
+    </style>
 
     <div class="container mt-4">
         {% block content %}

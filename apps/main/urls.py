@@ -13,6 +13,8 @@ from apps.main.views import (
 router = DefaultRouter()
 router.register(r"api/cv", CVViewSet, basename="cv")
 
+app_name = "main"
+
 urlpatterns = [
     path("", CVListView.as_view(), name="cv_list"),
     path("cv/<int:pk>/", CVDetailView.as_view(), name="cv_detail"),
@@ -22,5 +24,3 @@ urlpatterns = [
 ]
 
 urlpatterns += router.urls
-
-app_name = "main"
