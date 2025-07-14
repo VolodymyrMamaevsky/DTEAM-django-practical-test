@@ -7,7 +7,7 @@
 ### Django application for managing CVs with PDF export, email sending, and translation to different languages.
 
 
-### *Technology Stack: Django, DRF, PostgreSQL, Celery, Redis, Pytest, MyPy, Ruff.*
+### Technology Stack: Django, DRF, PostgreSQL, Celery, Redis, Pytest, MyPy, Ruff.
 
 ### Features
 
@@ -82,16 +82,6 @@ The project consists of the following services:
 - **Redis** - message broker for Celery (port 6379)
 - **Celery** - background task processing
 - **MailHog** - SMTP server for testing (port 8025)
-
-### Main Features
-
-- List of all CVs
-- Detailed CV view
-- CV export to PDF
-- Send PDF via email
-- CV translation to various languages
-- Audit system for all HTTP requests
-- Application settings
 
 ### Commit Guidelines
 
